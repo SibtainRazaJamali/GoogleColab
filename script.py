@@ -31,7 +31,7 @@ def download_image(fnames_and_urls):
         image_rgb.save(fname, format='JPEG', quality=90)
 
 
-def parse_dataset(_dataset, _outdir, _max=1014544):
+def parse_dataset(_dataset, _outdir, _max=101454):
     """
     parse the dataset to create a list of tuple containing absolute path and url of image
     :param _dataset: dataset to parse
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     fnames_urls = parse_dataset(dataset, outdir)
 
     # download data
-    pool = multiprocessing.Pool(processes=5000)
+    pool = multiprocessing.Pool(processes=100)
     with tqdm(total=len(fnames_urls)) as progress_bar:
         for _ in pool.imap_unordered(download_image, fnames_urls):
             progress_bar.update(1)
