@@ -63,7 +63,7 @@ if __name__ == '__main__':
     fnames_urls = parse_dataset(dataset, outdir)
 
     # download data
-    pool = multiprocessing.Pool(processes=1000)
+    pool = multiprocessing.Pool(processes=200)
     with tqdm(total=len(fnames_urls)) as progress_bar:
         for _ in pool.imap_unordered(download_image, fnames_urls):
             progress_bar.update(1)
