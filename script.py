@@ -41,8 +41,8 @@ def parse_dataset(_dataset, _outdir, _max=300000):
     """
     _fnames_urls = []
     data=pd.read_csv(dataset)
-    for url in data["url"]:
-        fname = os.path.join(outdir, "{}.jpg".format(data["imageId"]))
+    for url,fid in zip(data["url"],data["imageId"]):
+        fname = os.path.join(outdir, "{}.jpg".format(fid))
         _fnames_urls.append((fname, url))
     return _fnames_urls[:_max]
 
