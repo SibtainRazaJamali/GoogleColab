@@ -31,7 +31,7 @@ def download_image(fnames_and_urls):
         image_rgb.save(fname, format='JPEG', quality=90)
 
 
-def parse_dataset(_dataset, _outdir, _max=10000):
+def parse_dataset(_dataset, _outdir, _max=300000):
     """
     parse the dataset to create a list of tuple containing absolute path and url of image
     :param _dataset: dataset to parse
@@ -40,12 +40,10 @@ def parse_dataset(_dataset, _outdir, _max=10000):
     :return: list of tuple containing absolute path and url of image
     """
     _fnames_urls = []
-    with open(dataset, 'r') as f:
-        data = json.load(f)
-        for image in data["images"]:
-            url = image["url"]
-            fname = os.path.join(outdir, "{}.jpg".format(image["imageId"]))
-            _fnames_urls.append((fname, url))
+    data=pd.read_csv("_dataset")
+    for url in data["url"]:
+        fname = os.path.join(outdir, "{}.jpg".format(data["imageId"]))
+        _fnames_urls.append((fname, url))
     return _fnames_urls[:_max]
 
 
