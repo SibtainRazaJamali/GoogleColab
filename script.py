@@ -24,11 +24,14 @@ def download_image(fnames_and_urls):
     """
     fname, url = fnames_and_urls
     if not os.path.exists(fname):
-        http = urllib3.PoolManager(retries=Retry(connect=3, read=2, redirect=3))
-        response = http.request("GET", url)
-        image = Image.open(io.BytesIO(response.data))
-        image_rgb = image.convert("RGB")
-        image_rgb.save(fname, format='JPEG', quality=90)
+        try:
+            http = urllib3.PoolManager(retries=Retry(connect=3, read=2, redirect=3))
+            response = http.request("GET", url)
+            image = Image.open(io.BytesIO(response.data))
+            image_rgb = image.convert("RGB")
+            image_rgb.save(fname, format='JPEG', quality=90)
+         except:
+            continue
 
 
 def parse_dataset(_dataset, _outdir, _max=300000):
