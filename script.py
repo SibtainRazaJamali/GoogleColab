@@ -40,7 +40,7 @@ def parse_dataset(_dataset, _outdir, _max=300000):
     :return: list of tuple containing absolute path and url of image
     """
     _fnames_urls = []
-    data=pd.read_csv("_dataset")
+    data=pd.read_csv("dataset")
     for url in data["url"]:
         fname = os.path.join(outdir, "{}.jpg".format(data["imageId"]))
         _fnames_urls.append((fname, url))
