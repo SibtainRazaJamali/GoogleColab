@@ -32,7 +32,6 @@ def download_image(fnames_and_urls):
             image_rgb = image.convert("RGB")
             image_rgb.save(fname, format='JPEG', quality=90)
         except:
-            continue
 
 
 def parse_dataset(_dataset, _outdir, _max=300000):
