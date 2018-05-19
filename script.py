@@ -15,7 +15,7 @@ from urllib3.util import Retry
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-
+lof=[]
 def download_image(fnames_and_urls):
     """
     download image and save its with 90% quality as JPG format
@@ -32,6 +32,7 @@ def download_image(fnames_and_urls):
             image_rgb = image.convert("RGB")
             image_rgb.save(fname, format='JPEG', quality=90)
         except:
+            lof.append(fname)
 
 
 def parse_dataset(_dataset, _outdir, _max=300000):
